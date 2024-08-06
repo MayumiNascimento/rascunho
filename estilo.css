@@ -1,0 +1,256 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  
+}
+
+body {
+  background-color: #fafafa;
+  align-items: center;
+  justify-content: center;  
+  height: 100vh;
+  margin: 0;
+  transition: background 0.2s linear;
+}
+
+.container {
+    height: 100vh;
+    background-color: #fff1fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10rem;
+  }
+
+
+header{
+  position: relative;
+  background: #8B3A44;
+  padding: 20px;
+  width: 100%;
+  height: 70px;
+}
+
+/* ============================| Sidebar | Barra Lateral |============================ */
+.sidebar{
+  position: absolute;
+  width: 250px;
+  height: 100%;
+  padding-top: 10px;
+  left: 0;
+  background: #8B3A44;
+  transition: 0.5s;
+}
+.sidebar .image{
+  width:  100px;
+  height: 100px;
+  border-radius: 100px;
+  margin-left: 65px;
+}
+.sidebar h2{
+  color: #ccc;
+  margin-top: 0;
+  margin-bottom: 20px;
+  margin-left: 96px;
+}
+.sidebar a{
+  color: #fff;
+  display: block;
+  width: 100%;
+  line-height: 60px;
+  text-decoration: none;
+  padding-left: 40px;
+  box-sizing: border-box;
+  transition: 0.55s;
+  transition-property:background ;
+  z-index: 2;
+}
+.sidebar a:hover{
+  background: #df7c87;
+}
+.sidebar ion-icon{
+  padding-right: 10px;
+}
+label #sidebar_btn{
+  z-index: 1;
+  position: fixed;
+  left: 10px; /* Movimenta a posição do botão menu toggle para os lados*/
+  color: #fff;
+  font-size: 25px;
+  margin: 4px 0; /* Movimenta a posição do botão menu toggle para cima e para baixo */
+  cursor: pointer;
+  transition: 0.5s;
+  transition-property:color ;
+}
+label #sidebar_btn:hover{
+  color: #e47884; 
+}
+#check:checked ~ .sidebar{
+  left: -250px; /* Movimentação da barra lateral (para esquerda)| Padrão: -190px*/
+}
+#check:checked ~ .sidebar a span{
+  display: none;
+}
+#check:checked ~ .sidebar a{
+  font-size: 20px;
+  margin-left: 170px;
+  width: 80px;
+}
+
+#check:checked ~ .content{
+  margin-left: -5px; /* Movimenta a posição do conteúdo da class content para os lados */
+}
+#check{
+  display: none;
+}
+
+/* ============================| CONTROLE DARK MODE |============================
+
+.label{
+ background-color: #111;   
+ border-radius: 50px;
+ cursor: pointer;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 0 2px;
+ position: relative;
+ height: 26px;
+ width: 50px; /* Padrão Alternativo que funciona 46px */
+ transform: scale(1.5);  
+ float: right;
+ margin-top: -30px;
+ margin-right: 15px; 
+} */
+
+/* ============================| Botões / Ícones Font Awesome |============================ */
+button {
+  color: #102f5e;
+  border: 2px solid #102f5e;
+  padding: 0.3rem 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+button:hover {
+  background-color: #102f5e;
+  color: #fff;
+}
+
+button:hover > i {
+  color: #fff;
+}
+
+button i {
+  pointer-events: none;
+  color: #102f5e;
+  font-weight: bold;
+}
+
+input,
+select {
+  padding: 0.25rem 0.5rem;
+}
+
+.hide {
+  display: none;
+}
+
+/* ============================| Estilização de títulos e subtítulos |============================ */
+.left h3{
+  color: #fff;
+  margin: 0 30px; /* Movimenta o h3 do nome para a direita */
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 800;
+}
+.left span{
+  color: #9ab2f7;
+}
+
+
+.PagInicial p{
+  
+  margin-left: 620px;
+  margin-top: 310px;
+  font-size: 30px;
+}
+
+/* ======================================| Modal |====================================================*/
+#modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+#modalContent {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* ============================| Estilização de tabela e calendário |============================ */
+table {
+        width: 100VH;
+        height: 12vh;
+        margin: 5vh auto;
+        border: none;
+    }
+
+    th, td {
+        padding: 5px;
+        text-align: center;
+    }
+    tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+    tr:nth-child(odd) {
+        background-color: #d67474;
+    }
+
+  #calendar {
+      width: 80%;
+      height: 80vh;
+      border-collapse: collapse;
+      margin-top: 25px;
+  }
+
+  .calendar th, .calendar td {
+      border: 1px solid #ccc;
+      padding: 5px;
+      text-align: center;
+  }
+
+  .calendar th {
+      background-color: #e3e3e3;
+      font-weight: bold;
+  }
