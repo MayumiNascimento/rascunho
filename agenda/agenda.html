@@ -19,6 +19,9 @@
   <!-- ÍCONES CONTROLE ALTERNAR TEMA -->
   <script src="https://kit.fontawesome.com/998c60ef77.js" crossorigin="anonymous"></script>
 
+  <!-- ICONE BOTÃO FLUTUANTE -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
 
   <!-- FOLHA DE ESTILO -->
   <link rel="stylesheet" href="../estilo.css" />
@@ -53,16 +56,72 @@
       <ion-icon name="person-outline"></ion-icon><span>Entrar</span>
     </a> -->
   </div>
-  <!------------------------------------------------------------------------------->
+  <!-------------------------------------------------------------------------------->
 
   <div class="container" >
-
     <div id="calendar"></div>
 
+    <a href="" style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#8B3A44;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888;
+        z-index:1000;" target="_blank">
+      <i style="margin-top:16px" class="fa fa-plus"></i>
+    </a>
+
   </div>
+<!---------------------------------------------------- Modal ------------------------------------------------------>
+  <div class="modal fade" 
+      id="eventModal" 
+      tabindex="-1" 
+      role="dialog" 
+      aria-labelledby="eventModalLabel" 
+      aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventModalLabel">Adicionar Evento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="eventForm">
+                    <div class="form-group">
+                        <label for="eventName">Nome do Evento</label>
+                        <input type="text" class="form-control" id="eventName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDay">Dia</label>
+                        <select class="form-control" id="eventDay">
+                            <option value="2">Segunda</option>
+                            <option value="3">Terça</option>
+                            <option value="4">Quarta</option>
+                            <option value="5">Quinta</option>
+                            <option value="6">Sexta</option>
+                            <option value="7">Sábado</option>
+                            <option value="8">Domingo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventTime">Hora</label>
+                        <select class="form-control" id="eventTime">
+                            <option value="1">08:00</option>
+                            <option value="2">09:00</option>
+                            <option value="3">10:00</option>
+                            <option value="4">11:00</option>
+                            <option value="5">12:00</option>
+                            <option value="6">13:00</option>
+                            <option value="7">14:00</option>
+                            <option value="8">15:00</option>
+                            <option value="9">16:00</option>
+                            <option value="10">17:00</option>
+                            <option value="11">18:00</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Adicionar Evento</button>
+                </form>
+            </div>
 
   <script>
-
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -81,23 +140,36 @@
             },
             {
                 title: 'Almoço',
-                start: '2023-08-03T12:00:00',
-                end: '2023-08-03T13:00:00'
+                start: '2024-08-06T12:00:00',
+                end: '2024-08-06T13:00:00'
             }
         ]
     });
-      calendar.render();
+    calendar.render();
 
-      document.querySelectorAll('.calendar td').forEach(function(cell) {
-          cell.addEventListener('dblclick', function() {
-              var eventName = prompt('Nome do evento:');
-              if (!eventName) return;
+
+  });
+
+  // Modal submission
+  $('#eventForm').on('submit', function(event) {
+      event.preventDefault();
+      var eventName = $('#eventName').val();
+      var eventDay = $('#eventDay').val();
+      var eventTime = $('#eventTime').val();
+
+      if (eventName) {
+          var cell = document.querySelector('.calendar tbody tr:nth-child(' + eventTime + ') td:nth-child(' + eventDay + ')');
+          if (cell) {
               cell.classList.add('event');
               cell.textContent = eventName;
-          });
-      });
-        });
-    </script>
+          }
+      }
+
+      $('#eventModal').modal('hide');
+      $('#eventForm')[0].reset();
+  });
+
+</script>
 
 </body>
 </html>

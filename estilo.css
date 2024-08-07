@@ -238,8 +238,8 @@ table {
     }
 
   #calendar {
-      width: 80%;
-      height: 80vh;
+      width: 100vh;
+      height: 85vh;
       border-collapse: collapse;
       margin-top: 25px;
   }
