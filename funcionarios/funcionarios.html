@@ -3,92 +3,299 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>funcionarios</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Funcionários</title>
 
   <!-- ÍCONES BARRA LATERAL -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+  <!-- BOOTSTRAP -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- FOLHA DE ESTILO -->
   <link rel="stylesheet" href="../estilo.css" />
-  <!-- BOOTSTRAP -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
 </head>
 
 <body>
-  <header></header>
+  <header class="bg-primary py-3">
+    <!-- Botão de menu para dispositivos móveis -->
+    <button id="sidebarToggle" class="btn btn-light d-md-none">
+      <i class="fa fa-bars"></i>
+    </button>
+  </header>
 
-  <!----------------------- Sidebar---------------------------------------------->
-  <div class="sidebar">
-    <img src="" class="image" alt="">
-   
-    <a href="../index.html">
-      <ion-icon name="home-outline"></ion-icon><span>Início</span>
-    </a>
-    <a href="../servicos/servicos.html">
-      <ion-icon name="desktop-outline"></ion-icon><span>Serviços</span>
-    </a>
-    <a href="../agenda/agenda.html">
-      <ion-icon name="cash-outline"></ion-icon><span>Agenda</span>      
-    </a>
-    <a href="#">
-      <ion-icon name="information-circle-outline"></ion-icon><span>Relatório</span>
-    </a>
-    <a href="funcionarios.html">
-      <ion-icon name="settings-outline"></ion-icon><span>Funcionários</span>
-    </a>
-    <!-- <a href="#">
-      <ion-icon name="person-outline"></ion-icon><span>Entrar</span>
-    </a> -->
-  </div>
-  <!------------------------------------------------------------------------------->
+  <div class="container-fluid">
+    <div class="row">
+      <!----------------------------- Sidebar ------------------------------------------>
+      <nav id="sidebar" class="col-md-2 bg-dark sidebar">
+        <div class="sidebar-sticky">
+          <img src="" class="image img-fluid rounded-circle mx-auto d-block my-3" alt="">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link text-white" href="../index.html">
+                <ion-icon name="home-outline"></ion-icon><span>Início</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="../servicos/servicos.html">
+                <ion-icon name="desktop-outline"></ion-icon><span>Serviços</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="../agenda/agenda.html">
+                <ion-icon name="cash-outline"></ion-icon><span>Agenda</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">
+                <ion-icon name="information-circle-outline"></ion-icon><span>Relatório</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="funcionarios.html">
+                <ion-icon name="settings-outline"></ion-icon><span>Funcionários</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-  <div class="container">
-    <h1>Funcionários cadastrados</h1>
+      <!----------------------------- Main Content ------------------------------------------>
+      <main role="main" class="col-md-10 ml-sm-auto px-4">
+        <h1 class="mt-4">Funcionários Cadastrados</h1>
 
-    <div>
-        <button style="margin: 9px;" id="openModalBtn"> Novo Funcionário</button>
-    </div>
+        <div class="mb-3">
+          <button class="btn btn-primary" id="openModalBtn">Novo Funcionário</button>
+        </div>
 
-    <div >
-        <table id="mainTable">
+        <div class="table-responsive">
+          <table class="table table-striped" id="mainTable">
             <thead>
-                <tr>
-                    <td>Nome</td>
-                    <td>Email</td>
-                    <td>Telefone</td>
-                    <td>Cargo</td>
-                    <td></td>
-                </tr>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Cargo</th>
+                <th>Tipo</th>
+                <th></th>
+              </tr>
             </thead>
             <tbody>
+              <!-- Linhas serão adicionadas dinamicamente aqui -->
             </tbody>
-        </table>
+          </table>
+        </div>
+      </main>
     </div>
   </div>
 
-  <div id="modal">
-    <div id="modalContent">
-        <span class="close">&times;</span>
-        <h2>Adicionar novo funcionário</h2>
-        <form id="addRowForm">
-            <label for="col1">Nome:</label>
-            <input type="text" id="col1" name="col1" required><br><br>
-            <label for="col2">Email:</label>
-            <input type="text" id="col2" name="col2" required><br><br>
-            <label for="col3">Telefone:</label>
-            <input type="text" id="col3" name="col3" required><br><br>
-            <label for="col4">Cargo:</label>
-            <input type="text" id="col4" name="col4" required><br><br>
-
-            <button type="submit">Adicionar</button>
-        </form>
+  <!----------------------------- Modal de Adicionar Funcionário ------------------------------------------------------>
+  <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addEmployeeModalLabel">Adicionar Novo Funcionário</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="addRowForm">
+            <div class="form-group">
+              <label for="col1">Nome:</label>
+              <input type="text" class="form-control" id="col1" name="col1" required>
+            </div>
+            <div class="form-group">
+              <label for="col2">Email:</label>
+              <input type="text" class="form-control" id="col2" name="col2" required>
+            </div>
+            <div class="form-group">
+              <label for="col3">Telefone:</label>
+              <input type="text" class="form-control" id="col3" name="col3" required>
+            </div>
+            <div class="form-group">
+              <label for="col4">Cargo:</label>
+              <input type="text" class="form-control" id="col4" name="col4" required>
+            </div>
+            <div class="form-group">
+              <label for="col5">Tipo:</label>
+              <select class="form-control" id="col5" name="col5" required>
+                <option value="Administrador">Administrador</option>
+                <option value="Funcionário">Funcionário</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="col6">Senha:</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="col6" name="col6" required>
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-secondary" id="generatePasswordBtn">Gerar Senha</button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="col7">Comissão (%):</label>
+              <input type="number" class="form-control" id="col7" name="col7" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+          </form>
+        </div>
+      </div>
     </div>
-</div>
-<script src="js/scripts.js"></script>
   </div>
+
+  <!----------------------------- Modal de Visualização de Funcionário ------------------------------------------------------>
+  <div class="modal fade" id="viewEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="viewEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewEmployeeModalLabel">Detalhes do Funcionário</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Nome:</strong> <span id="viewName"></span></p>
+          <p><strong>Email:</strong> <span id="viewEmail"></span></p>
+          <p><strong>Telefone:</strong> <span id="viewPhone"></span></p>
+          <p><strong>Cargo:</strong> <span id="viewRole"></span></p>
+          <p><strong>Tipo:</strong> <span id="viewType"></span></p>
+          <p><strong>Senha:</strong> <span id="viewPassword"></span></p>
+          <p><strong>Comissão:</strong> <span id="viewCommission"></span>%</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const openModalBtn = document.getElementById('openModalBtn');
+      const addEmployeeModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
+      const viewEmployeeModal = new bootstrap.Modal(document.getElementById('viewEmployeeModal'));
+      const addRowForm = document.getElementById('addRowForm');
+      const tableBody = document.querySelector('#mainTable tbody');
+      const generatePasswordBtn = document.getElementById('generatePasswordBtn');
+      const passwordField = document.getElementById('col6');
+
+      // Carregar funcionários do localStorage
+      let employees = JSON.parse(localStorage.getItem('employees')) || [];
+
+      // Função para salvar funcionários no localStorage
+      const saveEmployees = () => {
+        localStorage.setItem('employees', JSON.stringify(employees));
+      };
+
+      // Função para gerar senha aleatória
+      const generatePassword = () => {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let password = '';
+        for (let i = 0; i < 8; i++) {
+          password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return password;
+      };
+
+      // Gerar senha ao clicar no botão
+      generatePasswordBtn.addEventListener('click', function() {
+        passwordField.value = generatePassword();
+      });
+
+      // Abrir modal ao clicar no botão "Novo Funcionário"
+      openModalBtn.addEventListener('click', function() {
+        addEmployeeModal.show();
+      });
+
+      // Adicionar novo funcionário ao formulário
+      addRowForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const nome = document.getElementById('col1').value;
+        const email = document.getElementById('col2').value;
+        const telefone = document.getElementById('col3').value;
+        const cargo = document.getElementById('col4').value;
+        const tipo = document.getElementById('col5').value;
+        const senha = document.getElementById('col6').value;
+        const comissao = document.getElementById('col7').value;
+
+        if (nome && email && telefone && cargo && tipo && senha && comissao) {
+          const newEmployee = {
+            id: Date.now(), // ID único para o funcionário
+            nome,
+            email,
+            telefone,
+            cargo,
+            tipo,
+            senha,
+            comissao
+          };
+
+          employees.push(newEmployee);
+          saveEmployees();
+          renderTable();
+          addEmployeeModal.hide();
+          addRowForm.reset();
+        }
+      });
+
+      // Renderizar a tabela com os funcionários
+      const renderTable = () => {
+        tableBody.innerHTML = '';
+        employees.forEach(employee => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${employee.nome}</td>
+            <td>${employee.email}</td>
+            <td>${employee.telefone}</td>
+            <td>${employee.cargo}</td>
+            <td>${employee.tipo}</td>
+            <td>
+              <button class="btn btn-sm btn-info viewBtn" data-id="${employee.id}">Ver</button>
+              <button class="btn btn-sm btn-danger deleteBtn" data-id="${employee.id}">Excluir</button>
+            </td>
+          `;
+          tableBody.appendChild(row);
+        });
+      };
+
+      // Visualizar detalhes do funcionário
+      tableBody.addEventListener('click', function(event) {
+        if (event.target.classList.contains('viewBtn')) {
+          const employeeId = event.target.getAttribute('data-id');
+          const employee = employees.find(e => e.id == employeeId);
+
+          if (employee) {
+            document.getElementById('viewName').textContent = employee.nome;
+            document.getElementById('viewEmail').textContent = employee.email;
+            document.getElementById('viewPhone').textContent = employee.telefone;
+            document.getElementById('viewRole').textContent = employee.cargo;
+            document.getElementById('viewType').textContent = employee.tipo;
+            document.getElementById('viewPassword').textContent = employee.senha;
+            document.getElementById('viewCommission').textContent = employee.comissao;
+            viewEmployeeModal.show();
+          }
+        }
+
+        // Excluir funcionário
+        if (event.target.classList.contains('deleteBtn')) {
+          const employeeId = event.target.getAttribute('data-id');
+          employees = employees.filter(e => e.id != employeeId);
+          saveEmployees();
+          renderTable();
+        }
+      });
+
+      // Renderizar a tabela ao carregar a página
+      renderTable();
+    });
+  </script>
 </body>
+
 </html>

@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agenda</title>
 
   <!-- ÍCONES BARRA LATERAL -->
@@ -14,162 +15,145 @@
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+  <!-- FULLCALENDAR -->
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 
-  <!-- ÍCONES CONTROLE ALTERNAR TEMA -->
-  <script src="https://kit.fontawesome.com/998c60ef77.js" crossorigin="anonymous"></script>
-
-  <!-- ICONE BOTÃO FLUTUANTE -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
+  <!-- BOOTSTRAP -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- FOLHA DE ESTILO -->
   <link rel="stylesheet" href="../estilo.css" />
-  <!-- BOOTSTRAP -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+  <!-- JAVASCRIPT -->
+  <script src="./js/script.js" defer></script>
 </head>
 
 <body>
-  <header></header>
+  <header class="bg-primary py-3">
+    <!-- Botão de menu para dispositivos móveis -->
+    <button id="sidebarToggle" class="btn btn-light d-md-none">
+      <i class="fa fa-bars"></i>
+    </button>
+  </header>
 
-  <!----------------------------- Sidebar  ------------------------------------------>
-  <div class="sidebar">
-    <img src="" class="image" alt="">
-   
-    <a href="../index.html">
-      <ion-icon name="home-outline"></ion-icon><span>Início</span>
-    </a>
-    <a href="../servicos/servicos.html">
-      <ion-icon name="desktop-outline"></ion-icon><span>Serviços</span>
-    </a>
-    <a href="#">
-      <ion-icon name="cash-outline"></ion-icon><span>Agenda</span>      
-    </a>
-    <a href="#">
-      <ion-icon name="information-circle-outline"></ion-icon><span>Relatório</span>
-    </a>
-    <a href="../funcionarios/funcionarios.html">
-      <ion-icon name="settings-outline"></ion-icon><span>Funcionários</span>
-    </a>
-    <!-- <a href="#">
-      <ion-icon name="person-outline"></ion-icon><span>Entrar</span>
-    </a> -->
+  <div class="container-fluid">
+    <div class="row">
+      <!----------------------------- Sidebar ------------------------------------------>
+      <nav id="sidebar" class="col-md-2 bg-dark sidebar">
+        <div class="sidebar-sticky">
+          <img src="" class="image img-fluid rounded-circle mx-auto d-block my-3" alt="">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link text-white" href="../index.html">
+                <ion-icon name="home-outline"></ion-icon><span>Início</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="../servicos/servicos.html">
+                <ion-icon name="desktop-outline"></ion-icon><span>Serviços</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">
+                <ion-icon name="cash-outline"></ion-icon><span>Agenda</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">
+                <ion-icon name="information-circle-outline"></ion-icon><span>Relatório</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="../funcionarios/funcionarios.html">
+                <ion-icon name="settings-outline"></ion-icon><span>Funcionários</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!----------------------------- Main Content ------------------------------------------>
+      <main role="main" class="col-md-10 ml-sm-auto px-4">
+        <div id="calendar" class="mt-4"></div>
+
+        <!-- Botão Flutuante -->
+        <a href="#" id="addEventButton" class="btn btn-primary btn-lg rounded-circle" style="position:fixed;bottom:40px;right:40px;z-index:1000;">
+          <i class="fa fa-plus"></i>
+        </a>
+      </main>
+    </div>
   </div>
-  <!-------------------------------------------------------------------------------->
 
-  <div class="container" >
-    <div id="calendar"></div>
-
-    <a href="" style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#8B3A44;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888;
-        z-index:1000;" target="_blank">
-      <i style="margin-top:16px" class="fa fa-plus"></i>
-    </a>
-
-  </div>
-<!---------------------------------------------------- Modal ------------------------------------------------------>
-  <div class="modal fade" 
-      id="eventModal" 
-      tabindex="-1" 
-      role="dialog" 
-      aria-labelledby="eventModalLabel" 
-      aria-hidden="true">
-
+  <!----------------------------- Modal de Adicionar Evento ------------------------------------------------------>
+  <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="eventModalLabel">Adicionar Evento</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="eventModalLabel">Adicionar Evento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="eventForm">
+            <div class="form-group">
+              <label for="eventName">Nome do Evento</label>
+              <input type="text" class="form-control" id="eventName" required>
             </div>
-            <div class="modal-body">
-                <form id="eventForm">
-                    <div class="form-group">
-                        <label for="eventName">Nome do Evento</label>
-                        <input type="text" class="form-control" id="eventName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="eventDay">Dia</label>
-                        <select class="form-control" id="eventDay">
-                            <option value="2">Segunda</option>
-                            <option value="3">Terça</option>
-                            <option value="4">Quarta</option>
-                            <option value="5">Quinta</option>
-                            <option value="6">Sexta</option>
-                            <option value="7">Sábado</option>
-                            <option value="8">Domingo</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="eventTime">Hora</label>
-                        <select class="form-control" id="eventTime">
-                            <option value="1">08:00</option>
-                            <option value="2">09:00</option>
-                            <option value="3">10:00</option>
-                            <option value="4">11:00</option>
-                            <option value="5">12:00</option>
-                            <option value="6">13:00</option>
-                            <option value="7">14:00</option>
-                            <option value="8">15:00</option>
-                            <option value="9">16:00</option>
-                            <option value="10">17:00</option>
-                            <option value="11">18:00</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Adicionar Evento</button>
-                </form>
+            <div class="form-group">
+              <label for="eventDate">Data</label>
+              <input type="date" class="form-control" id="eventDate" required>
             </div>
+            <div class="form-group">
+              <label for="eventTime">Hora</label>
+              <input type="time" class="form-control" id="eventTime" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar Evento</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        locale: 'pt-br',
-        headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
-        events: [
-            {
-                title: 'Reunião',
-                start: '2024-08-03T10:00:00',
-                end: '2024-08-03T12:00:00'
-            },
-            {
-                title: 'Almoço',
-                start: '2024-08-06T12:00:00',
-                end: '2024-08-06T13:00:00'
-            }
-        ]
-    });
-    calendar.render();
+  <!----------------------------- Modal de Detalhes do Evento ------------------------------------------------------>
+  <div class="modal fade" id="eventDetailsModal" tabindex="-1" role="dialog" aria-labelledby="eventDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="eventDetailsModalLabel">Detalhes do Evento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Nome:</strong> <span id="eventDetailsName"></span></p>
+          <p><strong>Data:</strong> <span id="eventDetailsDate"></span></p>
+          <p><strong>Hora:</strong> <span id="eventDetailsTime"></span></p>
+          <p><strong>Status:</strong> <span id="eventDetailsStatus"></span></p>
+          <div class="form-group">
+            <label>Marcar como:</label>
+            <div>
+              <input type="radio" id="statusCompleted" name="status" value="Concluído">
+              <label for="statusCompleted">Concluído</label>
+            </div>
+            <div>
+              <input type="radio" id="statusCanceled" name="status" value="Cancelado">
+              <label for="statusCanceled">Cancelado</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="editEventButton">Editar</button>
+          <button type="button" class="btn btn-danger" id="deleteEventButton">Excluir Evento</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
-  });
-
-  // Modal submission
-  $('#eventForm').on('submit', function(event) {
-      event.preventDefault();
-      var eventName = $('#eventName').val();
-      var eventDay = $('#eventDay').val();
-      var eventTime = $('#eventTime').val();
-
-      if (eventName) {
-          var cell = document.querySelector('.calendar tbody tr:nth-child(' + eventTime + ') td:nth-child(' + eventDay + ')');
-          if (cell) {
-              cell.classList.add('event');
-              cell.textContent = eventName;
-          }
-      }
-
-      $('#eventModal').modal('hide');
-      $('#eventForm')[0].reset();
-  });
-
-</script>
-
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
