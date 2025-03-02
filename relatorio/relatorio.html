@@ -50,36 +50,36 @@
     </style>
 </head>
 <body>
-
+ <!-------------------- SIDEBAR ----------------------->
     <div class="container-fluid overflow-hidden">
         <div class="row vh-100 overflow-auto">
-          <div class="col-12 col-sm-auto col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top sidebar">
+          <div class="col-12 col-sm-auto col-xl-2 px-sm-2 px-0 bg-danger bg-gradient d-flex sticky-top sidebar">
               <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
                   <a href="/" class="d-flex align-items-center pb-sm-3 mb-md-5 me-md-auto text-white text-decoration-none">
-                      <span class="fs-5">BeleSys</span>
+                      <span class="fs-5px">BeleSys</span>
                   </a>
                   <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
                       <li class="nav-item">
-                          <a href="#" class="nav-link px-sm-0 px-2">
+                          <a href="#" class="nav-link px-sm-0 px-2 text-light">
                               <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline"> Home</span>
                           </a>
                       </li>
                       <li>
-                          <a href="./relatorio.html"  class="nav-link px-sm-0 px-2">
+                          <a href="../relatorio/relatorio.html" class="nav-link px-sm-0 px-2 text-light">
                               <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline"> Relatórios</span> </a>
                       </li>
                       <li>
-                          <a href="../agenda/agenda.html" class="nav-link px-sm-0 px-2">
+                          <a href="../agenda/agenda.html" class="nav-link px-sm-0 px-2 text-light">
                               <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline"> Agenda</span></a>
                       </li>
                       
                       <li>
-                          <a href="../servicos/servicos.html" class="nav-link px-sm-0 px-2">
+                          <a href="../servicos/servicos.html" class="nav-link px-sm-0 px-2 text-light">
                               <i class="fs-5 bi-grid"></i><span class="ms-1 d-none d-sm-inline"> Serviços</span></a>
                       </li>
                       <li>
-                          <a href="../funcionarios/funcionarios.html" class="nav-link px-sm-0 px-2">
-                              <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline">Funcionarios</span> </a>
+                          <a href="./funcionarios.html" class="nav-link px-sm-0 px-2 text-light">
+                              <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline"> Funcionarios</span> </a>
                       </li>
                   </ul>
                   <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
@@ -97,7 +97,8 @@
                       </ul>
                   </div>
               </div>
-          </div>
+    </div>
+
     <main role="main" class="col d-flex flex-column h-sm-100">
        
         <div class="report-container">
@@ -123,10 +124,13 @@
                 <thead>
                     <tr>
                         <th>Data</th>
-                        <th>Hora</th>
                         <th>Cliente</th>
                         <th>Serviço</th>
                         <th>Funcionário</th>
+                        <th>Valor do serviço</th>
+                        <th>Descontos</th>
+                        <th>Comissão do funcionario</th>
+                        <th>Valor Líquido</th>
                     </tr>
                 </thead>
                 <tbody id="reportTableBody">
@@ -177,11 +181,11 @@ document.getElementById('reportForm').addEventListener('submit', function(event)
     if (filteredEvents.length > 0) {
         filteredEvents.forEach(event => {
             const [date, time] = event.start.split('T'); // Separa data e hora
-            const formattedTime = time.substring(0, 5); // Formata a hora (HH:MM)
 
-            // Recupera o nome do funcionário
+            // Recupera o nome do funcionário e comissao
             const employee = employees.find(emp => emp.id == event.extendedProps.employee);
             const employeeName = employee ? employee.nome : 'N/A';
+            const employeeCommission = employee ? parseFloat(employee.comissao) : 0; // Comissão
 
             // Recupera os nomes dos serviços
             const serviceNames = event.extendedProps.services
@@ -192,19 +196,30 @@ document.getElementById('reportForm').addEventListener('submit', function(event)
                 .join(', '); // Junta os nomes dos serviços em uma string
 
             // Formata o valor e o desconto
-            const formattedValue = event.extendedProps.totalValue ? `R$ ${parseFloat(event.extendedProps.totalValue).toFixed(2)}` : 'N/A';
-            const formattedDiscount = event.extendedProps.discount ? `R$ ${parseFloat(event.extendedProps.discount).toFixed(2)}` : 'N/A';
+            const totalValue = parseFloat(event.extendedProps.totalValue) || 0;
+            const discount = parseFloat(event.extendedProps.discount) || 0;
+            const formattedValue = `R$ ${totalValue.toFixed(2)}`;
+            const formattedDiscount = `R$ ${discount.toFixed(2)}`;
+
+            // Calcula a comissão
+            const commissionAmount = (totalValue * employeeCommission) / 100; // Comissão calculada sobre o valor total
+            const formattedCommission = `R$ ${commissionAmount.toFixed(2)}`; // Formata a comissão
+
+            // Calcula o valor líquido (valor total - desconto - comissão)
+            const netValue = totalValue - discount - commissionAmount; // Subtrai o desconto e a comissão
+            const formattedNetValue = `R$ ${netValue.toFixed(2)}`;
 
             // Cria a linha da tabela
             const row = `
                 <tr>
                     <td>${date}</td>
-                    <td>${formattedTime}</td>
                     <td>${event.extendedProps.client || 'N/A'}</td>
                     <td>${serviceNames}</td>
                     <td>${employeeName}</td>
                     <td>${formattedValue}</td>
                     <td>${formattedDiscount}</td>
+                    <td>${formattedCommission}</td>
+                    <td>${formattedNetValue}</td>
                 </tr>
             `;
             tableBody.innerHTML += row;
