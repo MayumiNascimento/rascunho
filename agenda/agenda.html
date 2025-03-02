@@ -15,65 +15,80 @@
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- JQUERY ( SELECT MULTIPLE ) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+
   <!-- FULLCALENDAR -->
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 
   <!-- BOOTSTRAP -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- FOLHA DE ESTILO -->
   <link rel="stylesheet" href="../estilo.css" />
 
-  <!-- JAVASCRIPT -->
-  <script src="./js/script.js" defer></script>
+
 </head>
 
 <body>
-  <header class="bg-primary py-3">
-    <!-- Botão de menu para dispositivos móveis -->
-    <button id="sidebarToggle" class="btn btn-light d-md-none">
-      <i class="fa fa-bars"></i>
-    </button>
-  </header>
 
-  <div class="container-fluid">
-    <div class="row">
       <!----------------------------- Sidebar ------------------------------------------>
-      <nav id="sidebar" class="col-md-2 bg-dark sidebar">
-        <div class="sidebar-sticky">
-          <img src="" class="image img-fluid rounded-circle mx-auto d-block my-3" alt="">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link text-white" href="../index.html">
-                <ion-icon name="home-outline"></ion-icon><span>Início</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="../servicos/servicos.html">
-                <ion-icon name="desktop-outline"></ion-icon><span>Serviços</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">
-                <ion-icon name="cash-outline"></ion-icon><span>Agenda</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">
-                <ion-icon name="information-circle-outline"></ion-icon><span>Relatório</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="../funcionarios/funcionarios.html">
-                <ion-icon name="settings-outline"></ion-icon><span>Funcionários</span>
-              </a>
-            </li>
-          </ul>
+  <div class="container-fluid overflow-hidden">
+  <div class="row vh-100 overflow-auto">
+    <div class="col-12 col-sm-auto col-xl-2 px-sm-2 px-0 bg-danger bg-gradient d-flex sticky-top sidebar">
+        <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
+            <a href="/" class="d-flex align-items-center pb-sm-3 mb-md-5 me-md-auto text-white text-decoration-none">
+                <span class="fs-5px">BeleSys</span>
+            </a>
+            <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-sm-0 px-2 text-light">
+                        <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline"> Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../relatorio/relatorio.html" class="nav-link px-sm-0 px-2 text-light">
+                        <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline"> Relatórios</span> </a>
+                </li>
+                <li>
+                    <a href="agenda.html" class="nav-link px-sm-0 px-2 text-light">
+                        <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline"> Agenda</span></a>
+                </li>
+                
+                <li>
+                    <a href="../servicos/servicos.html" class="nav-link px-sm-0 px-2 text-light">
+                        <i class="fs-5 bi-grid"></i><span class="ms-1 d-none d-sm-inline"> Serviços</span></a>
+                </li>
+                <li>
+                    <a href="../funcionarios/funcionarios.html" class="nav-link px-sm-0 px-2 text-light">
+                        <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline">Funcionarios</span> </a>
+                </li>
+            </ul>
+            <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="hugenerd" width="28" height="28" class="rounded-circle">
+                    <span class="d-none d-sm-inline mx-1">Joe</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="../login/login.html">Sign out</a></li>
+                </ul>
+            </div>
         </div>
-      </nav>
+    </div>
 
       <!----------------------------- Main Content ------------------------------------------>
-      <main role="main" class="col-md-10 ml-sm-auto px-4">
+      <main role="main" class="col d-flex flex-column h-sm-100">
         <div id="calendar" class="mt-4"></div>
 
         <!-- Botão Flutuante -->
@@ -84,29 +99,62 @@
     </div>
   </div>
 
-  <!----------------------------- Modal de Adicionar Evento ------------------------------------------------------>
+  <!----------------------------- Modal de Adicionar/Editar Evento ------------------------------------------------------>
   <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="eventModalLabel">Adicionar Evento</h5>
+          <h5 class="modal-title" id="eventModalLabel">Agendar</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
+          <p>(*)campos obrigatórios</p>
           <form id="eventForm">
             <div class="form-group">
-              <label for="eventName">Nome do Evento</label>
-              <input type="text" class="form-control" id="eventName" required>
+              <label for="eventClient">*Cliente:</label>
+              <input type="text" class="form-control" id="eventClient" required>
             </div>
             <div class="form-group">
-              <label for="eventDate">Data</label>
+              <label for="eventClientPhone">*Telefone (WhatsApp):</label>
+              <input type="text" class="form-control" id="eventClientPhone" required>
+            </div>
+            <div class="form-group">
+              <label for="eventDate">*Data:</label>
               <input type="date" class="form-control" id="eventDate" required>
             </div>
             <div class="form-group">
-              <label for="eventTime">Hora</label>
+              <label for="eventTime">*Hora:</label>
               <input type="time" class="form-control" id="eventTime" required>
+            </div>
+            <div class="form-group">
+              <label for="eventServices">*Serviços:</label>
+              <select class="form-control" id="eventServices" multiple required>
+                <!-- Opções de serviços serão preenchidas dinamicamente -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="eventEmployee">Funcionário:</label>
+              <select class="form-control" id="eventEmployee" required>
+                <!-- Opções de funcionários serão preenchidas dinamicamente -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="eventTotalValue">Valor Total:</label>
+              <input type="number" class="form-control" id="eventTotalValue" disabled>
+            </div>
+            <div class="form-group">
+              <label for="eventDiscount">Desconto </label> (opcional):
+              <input type="number" class="form-control" id="eventDiscount">
+            </div>
+            <div class="form-group">
+              <label for="eventFinalValue">Valor com Desconto:</label>
+              <input type="number" class="form-control" id="eventFinalValue" disabled>
+            </div>
+            <div class="form-group">
+              <label for="eventNotes">Observações:</label>
+              <textarea class="form-control" id="eventNotes" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Salvar Evento</button>
           </form>
@@ -126,10 +174,17 @@
           </button>
         </div>
         <div class="modal-body">
-          <p><strong>Nome:</strong> <span id="eventDetailsName"></span></p>
-          <p><strong>Data:</strong> <span id="eventDetailsDate"></span></p>
-          <p><strong>Hora:</strong> <span id="eventDetailsTime"></span></p>
-          <p><strong>Status:</strong> <span id="eventDetailsStatus"></span></p>
+          <p><strong>Cliente:</strong> <span id="viewEventClient"></span></p>
+          <p><strong>Telefone:</strong> <span id="viewEventClientPhone"></span></p>
+          <p><strong>Data:</strong> <span id="viewEventDate"></span></p>
+          <p><strong>Hora:</strong> <span id="viewEventTime"></span></p>
+          <p><strong>Funcionário:</strong> <span id="viewEventEmployee"></span></p>
+          <p><strong>Serviços:</strong> <span id="viewEventServices"></span></p>
+          <p><strong>Valor Total:</strong> <span id="viewEventTotalValue"></span></p>
+          <p><strong>Desconto:</strong> <span id="viewEventDiscount"></span></p>
+          <p><strong>Valor com Desconto:</strong> <span id="viewEventFinalValue"></span></p>
+          <p><strong>Observações:</strong> <span id="viewEventNotes"></span></p>
+          <p><strong>Status:</strong> <span id="viewEventStatus"></span></p>
           <div class="form-group">
             <label>Marcar como:</label>
             <div>
@@ -144,7 +199,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" id="editEventButton">Editar</button>
-          <button type="button" class="btn btn-danger" id="deleteEventButton">Excluir Evento</button>
+          <button type="button" class="btn btn-danger" id="deleteEventButton">Excluir</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         </div>
       </div>
@@ -154,6 +209,411 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
 
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const calendarEl = document.getElementById('calendar');
+  const addEventButton = document.getElementById('addEventButton');
+  const eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
+  const eventDetailsModal = new bootstrap.Modal(document.getElementById('eventDetailsModal'));
+  const eventForm = document.getElementById('eventForm');
+
+  const eventServicesSelect = document.getElementById('eventServices');
+  const eventEmployeeSelect = document.getElementById('eventEmployee');
+  const eventTotalValueInput = document.getElementById('eventTotalValue');
+  const eventDiscountInput = document.getElementById('eventDiscount');
+  const eventFinalValueInput = document.getElementById('eventFinalValue');
+
+  // Elementos do modal de detalhes
+  const viewEventClient = document.getElementById('viewEventClient');
+  const viewEventClientPhone = document.getElementById('viewEventClientPhone');
+  const viewEventDate = document.getElementById('viewEventDate');
+  const viewEventTime = document.getElementById('viewEventTime');
+  const viewEventEmployee = document.getElementById('viewEventEmployee');
+  const viewEventService = document.getElementById('viewEventService');
+  const viewEventTotalValue = document.getElementById('viewEventTotalValue');
+  const viewEventDiscount = document.getElementById('viewEventDiscount');
+  const viewEventFinalValue = document.getElementById('viewEventFinalValue');
+  const viewEventNotes = document.getElementById('viewEventNotes');
+  const viewEventStatus = document.getElementById('viewEventStatus');
+  const statusCompleted = document.getElementById('statusCompleted');
+  const statusCanceled = document.getElementById('statusCanceled');
+  const editEventButton = document.getElementById('editEventButton');
+  const deleteEventButton = document.getElementById('deleteEventButton');
+
+  // Carregar eventos do localStorage
+  let events = JSON.parse(localStorage.getItem('events')) || [];
+
+  // Carregar funcionários e serviços do localStorage
+  const employees = JSON.parse(localStorage.getItem('employees')) || [];
+  const services = JSON.parse(localStorage.getItem('services')) || [];
+
+  // Preencher select de funcionários
+  employees.forEach(employee => {
+    const option = document.createElement('option');
+    option.value = employee.id;
+    option.textContent = employee.nome;
+    eventEmployeeSelect.appendChild(option);
+  });
+
+// ====================================================================================
+
+  // // Preencher select de serviços
+  // services.forEach(service => {
+  //   const option = document.createElement('option');
+  //   option.value = service.id;
+  //   option.textContent = `${service.name} (R$ ${service.value})`;
+  //   eventServicesSelect.appendChild(option);
+  // });
+
+  // // Calcular valor total ao selecionar serviços
+  // eventServicesSelect.addEventListener('change', function () {
+  //   const selectedServices = Array.from(eventServicesSelect.selectedOptions).map(option => {
+  //     const serviceId = option.value;
+  //     return services.find(service => service.id == serviceId);
+  //   }) 
+  //   .filter(service => service !== undefined); // Filtrar serviços não encontrados
+
+  //   const totalValue = selectedServices.reduce((sum, service) => sum + parseFloat(service.value), 0);
+  //   eventTotalValueInput.value = totalValue.toFixed(2);
+  //   calculateFinalValue();
+  // });
+
+  // // Calcular valor final ao aplicar desconto
+  // eventDiscountInput.addEventListener('input', calculateFinalValue);
+
+  //   function calculateFinalValue() {
+  //     const totalValue = parseFloat(eventTotalValueInput.value) || 0;
+  //     const discount = parseFloat(eventDiscountInput.value) || 0;
+  //     const finalValue = totalValue - discount;
+  //     eventFinalValueInput.value = finalValue.toFixed(2);
+  //   }
+
+      // Agrupar serviços por categoria (se houver)
+      const groupedServices = {};
+        services.forEach(service => {
+        const category = service.category || 'Outros'; // Usar 'Outros' se não houver categoria
+        if (!groupedServices[category]) {
+            groupedServices[category] = [];
+        }
+        groupedServices[category].push(service);
+    });
+
+    // Preencher o select com os serviços agrupados
+    for (const [category, servicesInCategory] of Object.entries(groupedServices)) {
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = category;
+
+        servicesInCategory.forEach(service => {
+            const option = document.createElement('option');
+            option.value = service.id;
+            option.textContent = `${service.name} (R$ ${service.value})`;
+            optgroup.appendChild(option);
+        });
+
+        eventServicesSelect.appendChild(optgroup);
+    }
+
+  // Inicializar o Select2
+  $(eventServicesSelect).select2({
+        placeholder: "Selecione os serviços", // Texto de placeholder
+        allowClear: true, // Permite limpar a seleção
+        width: '100%' // Ajusta a largura do select
+    });
+
+      // Calcular valor total ao selecionar serviços
+      $(eventServicesSelect).on('change', function () {
+          const selectedServices = $(this).select2('data'); // Obter serviços selecionados
+          let totalValue = 0;
+
+          selectedServices.forEach(service => {
+              // Extrair o valor do serviço a partir do texto da opção
+              const match = service.text.match(/R\$\s*(\d+(,\d{2})?)/);
+              if (match && match[1]) {
+                  const serviceValue = parseFloat(match[1].replace(',', '.'));
+                  totalValue += serviceValue;
+              }
+          });
+
+          // Atualizar o campo de valor total
+          eventTotalValueInput.value = totalValue.toFixed(2);
+
+      });
+
+
+    // Função para calcular o valor final com desconto
+      function calculateFinalValue() {
+          const totalValue = parseFloat(eventTotalValueInput.value) || 0;
+          const discount = parseFloat(eventDiscountInput.value) || 0;
+          const finalValue = totalValue - discount;
+          eventFinalValueInput.value = finalValue.toFixed(2);
+      }
+
+    // Atualizar valor final ao alterar o desconto
+      eventDiscountInput.addEventListener('input', calculateFinalValue);
+
+// ========================================================================
+
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    locale: 'pt-br',
+    selectable: true,
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,list'
+    },
+    events: events.map(event => ({
+      id: event.id,
+      title: event.title,
+      start: event.start,
+      extendedProps: {
+        client: event.extendedProps?.client || 'n/a',
+        clientPhone: event.extendedProps?.clientPhone,
+        services: event.extendedProps?.services || [], 
+        employee: event.extendedProps?.employee,
+        totalValue: event.extendedProps?.totalValue,
+        discount: event.extendedProps?.discount,
+        finalValue: event.extendedProps?.finalValue,
+        notes: event.extendedProps?.notes,
+        status: event.extendedProps?.status || 'Pendente'
+      }
+    })),
+    dateClick: function (info) {
+      // Limpar o formulário e abrir o modal para adicionar um novo evento
+      eventForm.reset();
+      document.getElementById('eventDate').value = info.dateStr;
+      eventModal.show();
+    },
+    eventClick: function (info) {
+      const event = info.event;
+      
+      // Preencher o modal de detalhes com os dados do evento
+      viewEventClient.textContent = event.extendedProps.client || 'N/A';
+      viewEventClientPhone.textContent = event.extendedProps.clientPhone || 'N/A';
+      viewEventDate.textContent = event.start.toLocaleDateString('pt-BR');
+      viewEventTime.textContent = event.start.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+      const employee = employees.find(e => e.id == event.extendedProps.employee);
+      viewEventEmployee.textContent = employee ? employee.nome : 'N/A';
+
+      // Exibir os serviços selecionados
+      const selectedServices = (event.extendedProps.services || [])
+        .map(serviceId => {
+        const service = services.find(s => s.id == serviceId);
+        return service ? service.name : 'N/A';
+      }).join(', ');
+      viewEventServices.textContent = selectedServices;
+
+      // Exibir valores formatados
+      viewEventTotalValue.textContent = event.extendedProps.totalValue ? `R$ ${parseFloat(event.extendedProps.totalValue).toFixed(2)}` : 'N/A';
+      viewEventDiscount.textContent = event.extendedProps.discount ? `R$ ${parseFloat(event.extendedProps.discount).toFixed(2)}` : 'N/A';
+      viewEventFinalValue.textContent = event.extendedProps.finalValue ? `R$ ${parseFloat(event.extendedProps.finalValue).toFixed(2)}` : 'N/A';
+
+      // Exibir observações e status
+      viewEventNotes.textContent = event.extendedProps.notes || 'N/A';
+      viewEventStatus.textContent = event.extendedProps.status || 'Pendente';
+
+      // Marcar o status correto
+      if (event.extendedProps.status === 'Concluído') {
+        statusCompleted.checked = true;
+      } else if (event.extendedProps.status === 'Cancelado') {
+        statusCanceled.checked = true;
+      } else {
+        statusCompleted.checked = false;
+        statusCanceled.checked = false;
+      }
+
+  // Atualizar o status do evento
+      const updateStatus = () => {
+        const selectedStatus = document.querySelector('input[name="status"]:checked')?.value || 'Pendente';
+        
+        event.setExtendedProp('status', selectedStatus);
+        viewEventStatus.textContent = selectedStatus;
+        updateEventInLocalStorage(event);
+      };
+
+      statusCompleted.addEventListener('change', updateStatus);
+      statusCanceled.addEventListener('change', updateStatus);
+
+      // Configurar botão de edição
+      editEventButton.onclick = function () {
+        eventDetailsModal.hide();
+
+  // Preencher o formulário com os dados do evento existente
+    document.getElementById('eventClient').value = event.extendedProps.client || '';
+    document.getElementById('eventClientPhone').value = event.extendedProps.clientPhone || '';
+    document.getElementById('eventDate').value = event.start.toISOString().split('T')[0];
+    document.getElementById('eventTime').value = event.start.toTimeString().split(' ')[0].substring(0, 5);
+
+    // Preencher serviços selecionados
+    const eventServicesSelect = document.getElementById('eventServices');
+    eventServicesSelect.innerHTML = ''; // Limpar opções anteriores
+    services.forEach(service => {
+      const option = document.createElement('option');
+      option.value = service.id;
+      option.textContent = `${service.name} (R$ ${service.value})`;
+
+    if (event.extendedProps.services && Array.isArray(event.extendedProps.services)) {
+    if (service.id && event.extendedProps.services.includes(service.id.toString())) {
+      option.selected = true; // Marcar como selecionado se estiver no evento
+      }
+    }
+    eventServicesSelect.appendChild(option);
+    });
+
+    // Preencher funcionário
+    document.getElementById('eventEmployee').value = event.extendedProps.employee || '';
+
+    // Preencher valores
+    document.getElementById('eventTotalValue').value = event.extendedProps.totalValue || 0;
+    document.getElementById('eventDiscount').value = event.extendedProps.discount || 0;
+    document.getElementById('eventFinalValue').value = event.extendedProps.finalValue || 0;
+
+    // Preencher observações
+    document.getElementById('eventNotes').value = event.extendedProps.notes || '';
+
+        // Adicionar um campo oculto para o ID do evento
+          if (!document.getElementById('eventId')) {
+            const eventIdInput = document.createElement('input');
+            eventIdInput.type = 'hidden';
+            eventIdInput.id = 'eventId';
+            eventIdInput.name = 'eventId';
+            eventForm.appendChild(eventIdInput);
+        }
+        document.getElementById('eventId').value = event.id;
+
+        // Abrir o modal de edição
+        eventModal.show();
+      };
+
+      // Configurar botão de exclusão
+      deleteEventButton.onclick = function () {
+        const eventId = event.id;
+        events = events.filter(e => e.id !== eventId);
+        localStorage.setItem('events', JSON.stringify(events));
+        event.remove();
+        eventDetailsModal.hide();
+      };
+
+      eventDetailsModal.show();
+    }
+  });
+
+  calendar.render();
+
+  // Abrir modal ao clicar no botão flutuante
+  addEventButton.addEventListener('click', function () {
+    eventForm.reset();
+    document.getElementById('eventDate').value = '';
+    eventModal.show();
+  });
+
+  // Salvar evento no localStorage
+  eventForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  // Obter valores do formulário
+  const eventId = document.getElementById('eventId')?.value;
+  const eventClient = document.getElementById('eventClient').value;
+  const eventClientPhone = document.getElementById('eventClientPhone').value;
+  const eventDate = document.getElementById('eventDate').value;
+  const eventTime = document.getElementById('eventTime').value;
+  const eventServices = Array.from(document.getElementById('eventServices').selectedOptions).map(option => option.value);
+  const eventEmployee = document.getElementById('eventEmployee').value;
+  const eventTotalValue = document.getElementById('eventTotalValue').value;
+  const eventDiscount = document.getElementById('eventDiscount').value;
+  const eventFinalValue = document.getElementById('eventFinalValue').value;
+  const eventNotes = document.getElementById('eventNotes').value;
+
+  // Validar campos obrigatórios
+  if (eventClient && eventClientPhone && eventDate && eventTime && eventServices.length > 0 && eventEmployee) {
+    const eventData = {
+      id: eventId || Date.now(), // Usar ID existente ou gerar um novo
+      title: eventClient, // Usar o nome do cliente como título
+      start: `${eventDate}T${eventTime}:00`, // Data e hora no formato ISO
+      extendedProps: {
+        client: eventClient,
+        clientPhone: eventClientPhone,
+        services: eventServices, // Array de IDs dos serviços selecionados
+        employee: eventEmployee,
+        totalValue: parseFloat(eventTotalValue), // Valor total dos serviços
+        discount: parseFloat(eventDiscount) || 0, // Desconto (opcional)
+        finalValue: parseFloat(eventFinalValue), // Valor final com desconto
+        notes: eventNotes, // Observações (opcional)
+        status: 'Pendente' // Status padrão
+      }
+    };
+
+    if (eventId) {
+      // Atualizar evento existente
+      const existingEvent = calendar.getEventById(Number(eventId));
+      if (existingEvent) {
+        existingEvent.setProp('title', eventData.title);
+        existingEvent.setStart(eventData.start);
+        existingEvent.setExtendedProp('client', eventData.extendedProps.client);
+        existingEvent.setExtendedProp('clientPhone', eventData.extendedProps.clientPhone);
+        existingEvent.setExtendedProp('services', eventData.extendedProps.services);
+        existingEvent.setExtendedProp('employee', eventData.extendedProps.employee);
+        existingEvent.setExtendedProp('totalValue', eventData.extendedProps.totalValue);
+        existingEvent.setExtendedProp('discount', eventData.extendedProps.discount);
+        existingEvent.setExtendedProp('finalValue', eventData.extendedProps.finalValue);
+        existingEvent.setExtendedProp('notes', eventData.extendedProps.notes);
+        existingEvent.setExtendedProp('status', eventData.extendedProps.status);
+
+        // Atualizar no localStorage
+        updateEventInLocalStorage(existingEvent);
+      }
+    } else {
+      // Adicionar novo evento
+      calendar.addEvent(eventData);
+      events.push(eventData);
+      localStorage.setItem('events', JSON.stringify(events));
+    }
+
+    // Fechar o modal e resetar o formulário
+    eventModal.hide();
+    eventForm.reset();
+  } else {
+    alert('Por favor, preencha todos os campos obrigatórios.');
+  }
+});
+
+// Função para atualizar evento no localStorage
+function updateEventInLocalStorage(event) {
+  const eventId = event.id;
+  const updatedEvent = {
+    id: Number(eventId),
+    title: event.title,
+    start: event.start.toISOString(),
+    extendedProps: {
+      client: event.extendedProps.client,
+      clientPhone: event.extendedProps.clientPhone,
+      services: event.extendedProps.services,
+      employee: event.extendedProps.employee,
+      totalValue: event.extendedProps.totalValue,
+      discount: event.extendedProps.discount,
+      finalValue: event.extendedProps.finalValue,
+      notes: event.extendedProps.notes,
+      status: event.extendedProps.status || 'Pendente'
+    }
+  };
+
+  // Encontrar o índice do evento existente
+  const eventIndex = events.findIndex(e => e.id === Number(eventId));
+  if (eventIndex !== -1) {
+    // Substituir o evento existente
+    events[eventIndex] = updatedEvent;
+  } else {
+    // Se não encontrar, adicionar um novo evento (caso contrário, pode ser um erro)
+    events.push(updatedEvent);
+  }
+
+  // Atualizar o localStorage
+  localStorage.setItem('events', JSON.stringify(events));
+}
+});
+  
+  </script>
+</body>
 </html>

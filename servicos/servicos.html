@@ -3,162 +3,260 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Servicos</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serviços</title>
 
   <!-- ÍCONES BARRA LATERAL -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-  <!-- FONT AWESOME -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- BOOTSTRAP -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- FOLHA DE ESTILO -->
   <link rel="stylesheet" href="../estilo.css" />
-  <!-- BOOTSTRAP -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
 </head>
 
 <body>
-  <header></header>
 
-  <!-- Sidebar  -->
-  <div class="sidebar">
-    <img src="" class="image" alt="">
-   
-    <a href="../index.html">
-      <ion-icon name="home-outline"></ion-icon><span>Início</span>
-    </a>
-    <a href="#">
-      <ion-icon name="desktop-outline"></ion-icon><span>Serviços</span>
-    </a>
-    <a href="../agenda/agenda.html">
-      <ion-icon name="cash-outline"></ion-icon><span>Agenda</span>      
-    </a>
-    <a href="#">
-      <ion-icon name="information-circle-outline"></ion-icon><span>Relatório</span>
-    </a>
-    <a href="../funcionarios/funcionarios.html">
-      <ion-icon name="settings-outline"></ion-icon><span>Funcionários</span>
-    </a>
-  </div>
-  <!-- -->
 
-  <div class="container">
-    <h1 style="margin: 20px;">Serviços cadastrados</h1>
+  <div class="container-fluid">
+    <div class="row">
+      <!----------------------------- Sidebar ------------------------------------------>
+      <div class="container-fluid overflow-hidden">
+        <div class="row vh-100 overflow-auto">
+            <div class="col-12 col-sm-auto col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top sidebar">
+                <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
+                    <a href="/" class="d-flex align-items-center pb-sm-3 mb-md-5 me-md-auto text-white text-decoration-none">
+                        <span class="fs-5">BeleSys</span>
+                    </a>
+                    <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline"> Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline"> Relatórios</span> </a>
+                        </li>
+                        <li>
+                            <a href="../agenda/agenda.html" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline"> Agenda</span></a>
+                        </li>
+                        
+                        <li>
+                            <a href="./servicos.html" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 bi-grid"></i><span class="ms-1 d-none d-sm-inline"> Serviços</span></a>
+                        </li>
+                        <li>
+                            <a href="../funcionarios/funcionarios.html" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline">Funcionarios</span> </a>
+                        </li>
+                    </ul>
+                    <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="hugenerd" width="28" height="28" class="rounded-circle">
+                            <span class="d-none d-sm-inline mx-1">Joe</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-    <div style="display: flex" >
-        <input type="text" placeholder="Filtro de busca por: Categoria">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Novo Serviço</button>
-    </div>
+      <!----------------------------- Main Content ------------------------------------------>
+      <main role="main" class="col d-flex flex-column h-sm-100">
+        <h1 class="mt-4">Serviços Cadastrados</h1>
 
-    <div class="table-responsive">
-        <table id="mainTable" class="table table-lg table-striped table-hover">
+        <div class="mb-3">
+          <input type="text" class="form-control" id="searchInput" placeholder="Filtro de busca por: Categoria">
+        </div>
+
+        <div class="mb-3">
+          <button class="btn btn-primary" data-toggle="modal" data-target="#addServiceModal">Novo Serviço</button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-striped" id="mainTable">
             <thead>
-                <tr>
-                    <td>Serviço</td>
-                    <td>Categoria</td>
-                    <td>Valor</td>
-                </tr>
+              <tr>
+                <th>Serviço</th>
+                <th>Categoria</th>
+                <th>Valor</th>
+                <th>Ações</th>
+              </tr>
             </thead>
             <tbody>
+              <!-- Linhas serão adicionadas dinamicamente aqui -->
             </tbody>
-        </table>
+          </table>
+        </div>
+      </main>
     </div>
   </div>
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Adicionar serviço</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="serviceForm">
-          <div class="form-group">
-            <label for="serviceName">Serviço</label>
-            <input type="text" class="form-control" id="serviceName" name="serviceName" required>
-          </div>
-          <div class="form-group">
-            <label for="serviceCategory">Categoria</label>
-            <input type="text" class="form-control" id="serviceCategory" name="serviceCategory"  required>
-          </div>
-          <div class="form-group">
-            <label for="serviceValue">Valor</label>
-            <input type="number" class="form-control" id="serviceValue" name="serviceValue" placeholder="R$ (valor em reais)" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Salvar</button>
-        </form>
+  <!----------------------------- Modal de Adicionar Serviço ------------------------------------------------------>
+  <div class="modal fade" id="addServiceModal" tabindex="-1" role="dialog" aria-labelledby="addServiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addServiceModalLabel">Adicionar Serviço</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="serviceForm">
+            <div class="form-group">
+              <label for="serviceName">Serviço:</label>
+              <input type="text" class="form-control" id="serviceName" name="serviceName" required>
+            </div>
+            <div class="form-group">
+              <label for="serviceCategory">Categoria:</label>
+              <input type="text" class="form-control" id="serviceCategory" name="serviceCategory" required>
+            </div>
+            <div class="form-group">
+              <label for="serviceValue">Valor:</label>
+              <input type="number" class="form-control" id="serviceValue" name="serviceValue" placeholder="R$ (valor em reais)" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
+  <!----------------------------- Modal de Visualização de Serviço ------------------------------------------------------>
+  <div class="modal fade" id="viewServiceModal" tabindex="-1" role="dialog" aria-labelledby="viewServiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewServiceModalLabel">Detalhes do Serviço</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Serviço:</strong> <span id="viewServiceName"></span></p>
+          <p><strong>Categoria:</strong> <span id="viewServiceCategory"></span></p>
+          <p><strong>Valor:</strong> <span id="viewServiceValue"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const addServiceModal = new bootstrap.Modal(document.getElementById('addServiceModal'));
+      const viewServiceModal = new bootstrap.Modal(document.getElementById('viewServiceModal'));
+      const serviceForm = document.getElementById('serviceForm');
+      const tableBody = document.querySelector('#mainTable tbody');
+      const searchInput = document.getElementById('searchInput');
+
+      // Carregar serviços do localStorage
+      let services = JSON.parse(localStorage.getItem('services')) || [];
+
+      // Função para salvar serviços no localStorage
+      const saveServices = () => {
+        localStorage.setItem('services', JSON.stringify(services));
+      };
+
+      // Renderizar a tabela com os serviços
+      const renderTable = (filteredServices = services) => {
+        tableBody.innerHTML = '';
+        filteredServices.forEach(service => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${service.name}</td>
+            <td>${service.category}</td>
+            <td>R$ ${service.value}</td>
+            <td>
+              <button class="btn btn-sm btn-info viewBtn" data-id="${service.id}">Ver</button>
+              <button class="btn btn-sm btn-danger deleteBtn" data-id="${service.id}">Excluir</button>
+            </td>
+          `;
+          tableBody.appendChild(row);
+        });
+      };
+
+      // Adicionar novo serviço ao formulário
+      serviceForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const serviceName = document.getElementById('serviceName').value;
+        const serviceCategory = document.getElementById('serviceCategory').value;
+        const serviceValue = document.getElementById('serviceValue').value;
+
+        if (serviceName && serviceCategory && serviceValue) {
+          const newService = {
+            id: Date.now(), // ID único para o serviço
+            name: serviceName,
+            category: serviceCategory,
+            value: serviceValue
+          };
+
+          services.push(newService);
+          saveServices();
+          renderTable();
+          addServiceModal.hide();
+          serviceForm.reset();
+        }
+      });
+
+      // Visualizar detalhes do serviço
+      tableBody.addEventListener('click', function(event) {
+        if (event.target.classList.contains('viewBtn')) {
+          const serviceId = event.target.getAttribute('data-id');
+          const service = services.find(s => s.id == serviceId);
+
+          if (service) {
+            document.getElementById('viewServiceName').textContent = service.name;
+            document.getElementById('viewServiceCategory').textContent = service.category;
+            document.getElementById('viewServiceValue').textContent = `R$ ${service.value}`;
+            viewServiceModal.show();
+          }
+        }
+
+        // Excluir serviço
+        if (event.target.classList.contains('deleteBtn')) {
+          const serviceId = event.target.getAttribute('data-id');
+          services = services.filter(s => s.id != serviceId);
+          saveServices();
+          renderTable();
+        }
+      });
+
+      // Filtro de busca por categoria
+      searchInput.addEventListener('input', function() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filteredServices = services.filter(service =>
+          service.category.toLowerCase().includes(searchTerm)
+        );
+        renderTable(filteredServices);
+      });
+
+      // Renderizar a tabela ao carregar a página
+      renderTable();
+    });
+  </script>
 </body>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Carregar serviços do localStorage
-    function loadServices() {
-      const services = JSON.parse(localStorage.getItem('services')) || [];
-      services.forEach(service => {
-        const newRow = `<tr>
-                        <td>${service.name}</td>
-                        <td>${service.category}</td>
-                        <td>${service.value}</td>
-                      </tr>`;
-        $('#mainTable tbody').append(newRow);
-      });
-    }
-
-    // Salvar serviço no localStorage
-    function saveService(service) {
-      const services = JSON.parse(localStorage.getItem('services')) || [];
-      services.push(service);
-      localStorage.setItem('services', JSON.stringify(services));
-    }
-
-    // Carregar serviços ao inicializar a página
-    loadServices();
-
-    $('#serviceForm').on('submit', function (event) {
-      event.preventDefault();
-      const serviceName = $('#serviceName').val();
-      const serviceCategory = $('#serviceCategory').val();
-      const serviceValue = $('#serviceValue').val();
-
-      if (serviceName && serviceCategory && serviceValue) {
-        const newRow = `<tr>
-                        <td>${serviceName}</td>
-                        <td>${serviceCategory}</td>
-                        <td>${serviceValue}</td>
-                      </tr>`;
-        $('#mainTable tbody').append(newRow);
-
-        // Salvar no localStorage
-        const service = {
-          name: serviceName,
-          category: serviceCategory,
-          value: serviceValue
-        };
-        saveService(service);
-      }
-
-      $('#exampleModal').modal('hide');
-      $('#serviceForm')[0].reset();
-    });
-  });
-</script>
 </html>

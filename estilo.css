@@ -4,32 +4,10 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Sidebar */
-#sidebar {
-  height: 100vh; /* Ocupa 100% da altura da tela */
-  overflow-y: auto; /* Adiciona scroll se necessário */
-  transition: transform 0.3s ease;
-}
-
-/* Esconder sidebar em dispositivos móveis por padrão */
-@media (max-width: 767.98px) {
-  #sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    transform: translateX(-100%);
-    z-index: 1000;
-  }
-
-  #sidebar.d-none {
-    transform: translateX(0);
-  }
-}
 
 /* Botão flutuante */
 #addEventButton {
-  z-index: 1000; /* Garante que o botão fique acima do calendário */
+  z-index: 1000; 
 }
 
 /* Calendário */
@@ -114,4 +92,72 @@ body {
 #eventModal .modal-footer {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+/* Estilos para o modal */
+#eventModal .modal-dialog {
+  max-width: 90%; /* Define uma largura máxima para o modal */
+  max-height: 90vh; /* Define uma altura máxima para o modal */
+  margin: 1.75rem auto; /* Centraliza o modal */
+}
+
+#eventModal .modal-content {
+  max-height: 90vh; /* Define uma altura máxima para o conteúdo do modal */
+  overflow-y: auto; /* Adiciona rolagem vertical se o conteúdo for muito grande */
+}
+
+/* Estilos para o formulário dentro do modal */
+#eventModal .modal-body {
+  padding: 15px; /* Reduz o padding interno */
+}
+
+#eventModal .form-group {
+  margin-bottom: 10px; /* Reduz o espaçamento entre os campos do formulário */
+}
+
+#eventModal .form-control {
+  padding: 8px; /* Reduz o padding dos inputs */
+  font-size: 14px; /* Reduz o tamanho da fonte */
+}
+
+#eventModal textarea.form-control {
+  resize: vertical; /* Permite redimensionar verticalmente o textarea */
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+  #eventModal .modal-dialog {
+    max-width: 95%; /* Aumenta a largura máxima em telas menores */
+  }
+
+  #eventModal .modal-content {
+    max-height: 80vh; /* Reduz a altura máxima em telas menores */
+  }
+}
+
+/* bootstrap */
+:root {
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
 }
