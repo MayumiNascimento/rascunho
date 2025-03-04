@@ -23,37 +23,21 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+
   <!-- FOLHA DE ESTILO -->
   <link rel="stylesheet" href="../estilo.css" />
     <style>
-
-        .report-container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .table {
-            margin-top: 20px;
-            border: none; /* Remove a borda da tabela */
-        }
-        .table thead {
-            background: #ff7eb9;
-            color: white;
-        }
-        .table tbody tr {
-            border-bottom: 1px solid #ddd; /* Linha divisória entre as linhas */
-        }
         .hidden {
             display: none; /* Esconde a tabela inicialmente */
         }
+
     </style>
 </head>
 <body>
  <!-------------------- SIDEBAR ----------------------->
     <div class="container-fluid overflow-hidden">
         <div class="row vh-100 overflow-auto">
-          <div class="col-12 col-sm-auto col-xl-2 px-sm-2 px-0 bg-danger bg-gradient d-flex sticky-top sidebar">
+          <div class="col-12 col-sm-auto col-xl-2 px-sm-2 px-0 background-custom d-flex sticky-top sidebar">
               <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
                   <a href="/" class="d-flex align-items-center pb-sm-3 mb-md-5 me-md-auto text-white text-decoration-none">
                       <span class="fs-5px">BeleSys</span>
@@ -78,14 +62,14 @@
                               <i class="fs-5 bi-grid"></i><span class="ms-1 d-none d-sm-inline"> Serviços</span></a>
                       </li>
                       <li>
-                          <a href="./funcionarios.html" class="nav-link px-sm-0 px-2 text-light">
+                          <a href="../funcionarios/funcionarios.html" class="nav-link px-sm-0 px-2 text-light">
                               <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline"> Funcionarios</span> </a>
                       </li>
                   </ul>
                   <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
                       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                           <img src="https://github.com/mdo.png" alt="hugenerd" width="28" height="28" class="rounded-circle">
-                          <span class="d-none d-sm-inline mx-1">Joe</span>
+                          <span class="d-none d-sm-inline mx-1">Administrador</span>
                       </a>
                       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                           <li><a class="dropdown-item" href="#">Settings</a></li>
@@ -97,14 +81,33 @@
                       </ul>
                   </div>
               </div>
-    </div>
+        </div>
 
-    <main role="main" class="col d-flex flex-column h-sm-100">
-       
-        <div class="report-container">
+    <main role="main" class="col d-flex flex-column h-sm-100 p-4">
+        <!-- Instruções -->
+        <div class="instruction bg-light p-4 rounded mb-4 shadow-sm" aria-labelledby="instruction-heading">
+            <h1 id="instruction-heading" class="h4 mb-3">Gerar relatório</h1>
+            <p class="mb-3">
+                Para gerar um relatório de atendimentos, siga os passos abaixo:
+            </p>
+            <ol class="mb-3">
+                <li class="mb-2">Selecione a <strong>Data Inicial</strong> no campo correspondente.</li>
+                <li class="mb-2">
+                    Selecione a <strong>Data Final</strong> no campo correspondente. <br>
+                    <small class="text-muted">Escolha até qual data deseja incluir no relatório. A data final deve ser igual ou posterior à data inicial.</small>
+                </li>
+                <li>Clique no botão <strong>"Gerar Relatório"</strong>.</li>
+            </ol>
+            <p class="mb-0">
+                O relatório exibirá todos os atendimentos concluídos dentro do intervalo de datas selecionado.
+            </p>
+        </div>
+    
+        <!-- Formulário e Tabela -->
+        <div class="report-container bg-white p-4 rounded shadow-sm">
             <!-- Formulário para selecionar o intervalo de datas -->
-            <form id="reportForm">
-                <div class="row">
+            <form id="reportForm" class="mb-4">
+                <div class="row g-3">
                     <div class="col-md-5">
                         <label for="startDate" class="form-label">Data Inicial</label>
                         <input type="date" class="form-control" id="startDate" required>
@@ -114,14 +117,14 @@
                         <input type="date" class="form-control" id="endDate" required>
                     </div>
                     <div class="col-md-2 d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary w-100">Gerar Relatório</button>
+                        <button type="submit" class="btn background-custom text-white w-100">Gerar Relatório</button>
                     </div>
                 </div>
             </form>
-
+    
             <!-- Tabela para exibir os agendamentos (inicialmente escondida) -->
-            <table class="table hidden" id="reportTable">
-                <thead>
+            <table class="table-responsive table table-hover hidden" id="reportTable">
+                <thead class="table-light">
                     <tr>
                         <th>Data</th>
                         <th>Cliente</th>
@@ -129,19 +132,16 @@
                         <th>Funcionário</th>
                         <th>Valor do serviço</th>
                         <th>Descontos</th>
-                        <th>Comissão do funcionario</th>
+                        <th>Comissão do funcionário</th>
                         <th>Valor Líquido</th>
                     </tr>
                 </thead>
-                <tbody id="reportTableBody">
+                <tbody class="table" id="reportTableBody" >
                     <!-- Os dados serão preenchidos dinamicamente via JavaScript -->
                 </tbody>
             </table>
         </div>
     </main>
-
-    <!-- Bootstrap JS (opcional, se precisar de funcionalidades JS do Bootstrap) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Script para gerar o relatório -->
     <script>

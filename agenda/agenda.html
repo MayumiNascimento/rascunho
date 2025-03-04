@@ -41,7 +41,7 @@
       <!----------------------------- Sidebar ------------------------------------------>
   <div class="container-fluid overflow-hidden">
   <div class="row vh-100 overflow-auto">
-    <div class="col-12 col-sm-auto col-xl-2 px-sm-2 px-0 bg-danger bg-gradient d-flex sticky-top sidebar">
+    <div class="col-12 col-sm-auto col-xl-2 px-sm-2 px-0 background-custom d-flex sticky-top sidebar">
         <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
             <a href="/" class="d-flex align-items-center pb-sm-3 mb-md-5 me-md-auto text-white text-decoration-none">
                 <span class="fs-5px">BeleSys</span>
@@ -67,13 +67,13 @@
                 </li>
                 <li>
                     <a href="../funcionarios/funcionarios.html" class="nav-link px-sm-0 px-2 text-light">
-                        <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline">Funcionarios</span> </a>
+                        <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline"> Funcionarios</span> </a>
                 </li>
             </ul>
             <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/mdo.png" alt="hugenerd" width="28" height="28" class="rounded-circle">
-                    <span class="d-none d-sm-inline mx-1">Joe</span>
+                    <span class="d-none d-sm-inline mx-1">Administrador</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                     <li><a class="dropdown-item" href="#">Settings</a></li>
@@ -92,7 +92,7 @@
         <div id="calendar" class="mt-4"></div>
 
         <!-- Botão Flutuante -->
-        <a href="#" id="addEventButton" class="btn btn-primary btn-lg rounded-circle" style="position:fixed;bottom:40px;right:40px;z-index:1000;">
+        <a href="#" id="addEventButton" class="btn background-custom btn-lg rounded-circle text-white" style="position:fixed;bottom:40px;right:40px;z-index:1000;">
           <i class="fa fa-plus"></i>
         </a>
       </main>
@@ -101,7 +101,7 @@
 
   <!----------------------------- Modal de Adicionar/Editar Evento ------------------------------------------------------>
   <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog w-50" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="eventModalLabel">Agendar</h5>
@@ -112,22 +112,28 @@
         <div class="modal-body">
           <p>(*)campos obrigatórios</p>
           <form id="eventForm">
-            <div class="form-group">
+
+          <div class="row">
+            <div class="form-group col-md-6">
               <label for="eventClient">*Cliente:</label>
               <input type="text" class="form-control" id="eventClient" required>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
               <label for="eventClientPhone">*Telefone (WhatsApp):</label>
               <input type="text" class="form-control" id="eventClientPhone" required>
             </div>
-            <div class="form-group">
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6">
               <label for="eventDate">*Data:</label>
               <input type="date" class="form-control" id="eventDate" required>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
               <label for="eventTime">*Hora:</label>
               <input type="time" class="form-control" id="eventTime" required>
             </div>
+          </div>
             <div class="form-group">
               <label for="eventServices">*Serviços:</label>
               <select class="form-control" id="eventServices" multiple required>
@@ -140,18 +146,21 @@
                 <!-- Opções de funcionários serão preenchidas dinamicamente -->
               </select>
             </div>
-            <div class="form-group">
-              <label for="eventTotalValue">Valor Total:</label>
-              <input type="number" class="form-control" id="eventTotalValue" disabled>
-            </div>
-            <div class="form-group">
-              <label for="eventDiscount">Desconto </label> (opcional):
-              <input type="number" class="form-control" id="eventDiscount">
-            </div>
-            <div class="form-group">
-              <label for="eventFinalValue">Valor com Desconto:</label>
-              <input type="number" class="form-control" id="eventFinalValue" disabled>
-            </div>
+
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label for="eventTotalValue">Valor Total:</label>
+                <input type="number" class="form-control" id="eventTotalValue" disabled>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="eventDiscount">Desconto </label> (opcional):
+                <input type="number" class="form-control" id="eventDiscount">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="eventFinalValue">Valor com Desconto:</label>
+                <input type="number" class="form-control" id="eventFinalValue" disabled>
+              </div>
+           </div>
             <div class="form-group">
               <label for="eventNotes">Observações:</label>
               <textarea class="form-control" id="eventNotes" rows="3"></textarea>
@@ -187,6 +196,10 @@
           <p><strong>Status:</strong> <span id="viewEventStatus"></span></p>
           <div class="form-group">
             <label>Marcar como:</label>
+            <div>
+              <input type="radio" id="statusPending" name="status" value="Pendente">
+              <label for="statusPending">Pendente</label>
+            </div>
             <div>
               <input type="radio" id="statusCompleted" name="status" value="Concluído">
               <label for="statusCompleted">Concluído</label>
@@ -420,8 +433,7 @@ document.addEventListener('DOMContentLoaded', function () {
       } else if (event.extendedProps.status === 'Cancelado') {
         statusCanceled.checked = true;
       } else {
-        statusCompleted.checked = false;
-        statusCanceled.checked = false;
+        statusPending.checked = true; // Pendente como padrão
       }
 
   // Atualizar o status do evento
@@ -433,6 +445,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateEventInLocalStorage(event);
       };
 
+      statusPending.addEventListener('change', updateStatus);
       statusCompleted.addEventListener('change', updateStatus);
       statusCanceled.addEventListener('change', updateStatus);
 
