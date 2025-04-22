@@ -28,7 +28,7 @@ body {
 }
 
 #eventDetailsModal .modal-header {
-  background-color: #8B3A44;
+  background-color: #6a1b9a;
   color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -64,7 +64,7 @@ body {
 }
 
 #eventDetailsModal .modal-footer .btn-danger {
-  background-color: #dc3545;
+  background-color: #6a1b9a;
   border-color: #dc3545;
 }
 
@@ -75,7 +75,7 @@ body {
 }
 
 #eventModal .modal-header {
-  background-color: #8B3A44;
+  background-color: #6a1b9a;
   color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
